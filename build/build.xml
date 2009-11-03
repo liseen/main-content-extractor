@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="offlineparser" default="all" basedir=".">
+
+    <property environment="env"/>
+    <property file="build.properties"/>
+
+    <path id="class.path">
+        <pathelement path="${env.CLASSPATH}"/>
+        <pathelement path="${bin}"/>
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+	
+    <target name="all" depends="compile,jar"/>
+    <target name="allcompile" depends="clean,compile"/>
+
+    <target name="clean" description="removes intermediate files">
+        <delete dir="${bin}"/>
+        <echo message="delete jar file"></echo>
+        <delete includeemptydirs="true">
+            <fileset dir="${build}" includes="*.jar"/>
+        </delete>
+    </target>
+	
+    <target name="compile">
+        <echo message="begin to compile source without dependency"></echo>
+
+        <mkdir dir="${bin}"/>
+        <javac encoding="UTF-8" debug="on" fork="yes" source="1.6" target="1.6" memoryInitialSize="350m" memoryMaximumSize="512m"
+                srcdir="${src}"
+                destdir="${bin}"
+                includes="**/*.java">
+                <classpath refid="class.path"/>
+        </javac>
+    </target>
+
+    <target name="jar">
+        <jar destfile="offlineparser.jar" update="true">
+                <zipfileset dir="${bin}" includes="**/*.class" prefix="">
+                        <exclude name="**/CVS/**/*.*"/>
+                        <exclude name="**/.svn/**/*.*"/>
+                        <exclude name="**/.svn/*"/>
+                </zipfileset>
+        </jar>
+    </target>
+
+</project>

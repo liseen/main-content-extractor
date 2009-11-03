@@ -1,0 +1,12 @@
+project goal
+    implement a main content extractor for web page
+    extract title, main content, author and publish time
+
+TODO
+only web page used Chinese language supported
+
+
+
+BUILD
+    ant -f build/build.xml
+
