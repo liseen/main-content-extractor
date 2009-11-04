@@ -1,8 +1,10 @@
-project goal
-    implement a main content extractor for web page
+Description
+
+    A main content extractor for web page
     extract title, main content, author and publish time
 
-TODO
+Limit
+
 only web page used Chinese language supported
 
 
